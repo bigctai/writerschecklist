@@ -15,7 +15,6 @@ const UserJournalsList = (props) => {
   journalsRef.current = journals;
   const { token, setToken } = useToken();
   const [id, setId] = useState(0);
-  const [userDetails, setUserDetails] = useState([]);
   useEffect(() => {
     retrieveUser();
   }, []);

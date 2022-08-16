@@ -10,13 +10,18 @@ import useToken from "./useToken";
 const Journals = ({ props, words, range }) => {
   const [journals, setJournals] = useState([]);
   const [addedJournals, setAddedJournals] = useState([]);
+  const [userId, setUserId] = useState();
+  const { token, setToken } = useToken();
   useEffect(() => {
-    retrieveAddedJournals();
-  });
+    retrieveUser();
+  }, []);
   useEffect(() => {
     retrieveJournals();
   }, []);
-  const { token, setToken } = useToken();
+  useEffect(() => {
+    retrieveAddedJournals();
+  }, [userId]);
+
   const retrieveJournals = () => {
     if (words && range) {
       JournalDataService.filter(words, range)
@@ -44,17 +49,21 @@ const Journals = ({ props, words, range }) => {
         });
     }
   };
+  const retrieveUser = () => {
+    UserService.checkUser(token).then((response) => {
+      setUserId(response.data.id);
+    });
+  };
   //THE PROBLEM IS  THAT THIS IS BEING CONTINUOUSLY CALLED, BUT IF IT ISN'T, THEN IT WILL NOT UPDATE ISADDED WHICH IS UNDER JOURNALCARD
   //BASICALLY, THE PAGE IS BEING CONTINUOSLY UPDATED NOW
   const retrieveAddedJournals = () => {
-    let user_id = 0;
-    UserService.checkUser(token).then((response) => {
-      user_id = response.data.id;
-      ChecklistService.filter(user_id).then((response) => {
+    ChecklistService.filter(userId).then((response) => {
+      if (userId > 0) {
         setAddedJournals(response.data);
-      });
+      }
     });
   };
+
   return (
     <div className="journal-container">
       <Title
@@ -72,11 +81,7 @@ const Journals = ({ props, words, range }) => {
               word_count={journal.word_count}
               deadline={journal.deadline}
               age_range={journal.range}
-              isAdded={
-                addedJournals.findIndex(
-                  (element) => element.journal_name === journal.journal_name
-                ) > 0
-              }
+              userId={userId}
             ></JournalCard>
           ))}
       </div>

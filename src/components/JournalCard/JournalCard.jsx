@@ -11,28 +11,33 @@ export const JournalCard = ({
   word_count,
   deadline,
   age_range,
-  isAdded,
+  userId,
 }) => {
+  const [pressed, setPressed] = useState(false);
   useEffect(() => {
-    retrieveUser();
-  }, [isAdded]);
-  const [added, setAdded] = useState(isAdded);
-  let user_id = 0;
-  const retrieveUser = () => {
-    console.log(isAdded);
-    setAdded(isAdded);
-    UserService.checkUser(token).then((response) => {
-      user_id = response.data.id;
+    retrieveAdded();
+  }, []);
+  const [added, setAdded] = useState();
+
+  const retrieveAdded = () => {
+    ChecklistService.filter(userId).then((response) => {
+      console.log(response.data);
+      setAdded(
+        response.data.findIndex(
+          (element) => element.journal_name === journal_name
+        ) >= 0
+          ? true
+          : false
+      );
     });
   };
 
-  const token = useToken();
-
   const handleAdd = () => {
+    setPressed(!pressed);
     setAdded(!added);
     if (!added) {
       const user_journal = {
-        user_id: user_id,
+        user_id: userId,
         journal_id: id,
       };
       ChecklistService.create(user_journal);

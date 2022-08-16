@@ -1,0 +1,16 @@
+.chkbx{
+    height: 30px;
+    width:30px;
+    border: 30px;
+    margin-left: 50px;
+}
+
+.lbl{
+    margin-left: 20px;
+}
+
+.check{
+    width: 300px;
+    display: flex;
+    margin-bottom: 10px;
+}

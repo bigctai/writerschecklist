@@ -1,0 +1,60 @@
+.Login .password-repeat{
+    display: none;
+}
+
+.Login .redirect-to-login{
+    display: none;
+}
+
+.Signup .redirect-to-signup{
+    display: none;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    height: 890px;
+    flex-direction: column;
+    width: 60%;
+    position: sticky;
+    margin-left: auto;
+    margin-right: auto;
+    background-color:rgba(242, 179, 85, 0.71);
+}
+
+.form-container{
+    margin-top: 30px;
+    width: 400px;
+}
+label{
+    font-size: 20px;
+}
+
+.field{
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 100%;
+    display: block;
+    font-size: 20px;
+}
+
+
+Title{
+    position: relative;
+}
+
+input:hover{
+    border: 2px solid;
+}
+
+.logo{
+    height: 288px;
+    width: 392px;
+    margin-bottom: 50px;
+}
+
+.bottom-container{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

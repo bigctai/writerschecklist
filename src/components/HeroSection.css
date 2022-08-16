@@ -1,0 +1,41 @@
+.hero-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    object-fit: contain;
+  }
+
+p{
+    margin-top: 100px;
+    text-align: center;
+    font-size: 40px;
+}
+.hero-btn{
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.hero-btn .btn{
+    margin: 6px;
+}
+
+@media screen and (max-width: 960px) {
+    h1{
+        font-size: 40px;
+    }
+    p{
+        font-size: 20px;
+        margin-top: 50px;
+    }
+    .hero-btn{
+        margin-top: 25px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

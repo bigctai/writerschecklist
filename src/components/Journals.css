@@ -1,0 +1,10 @@
+.journals{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 500px);
+    justify-content: center;
+}
+
+.journal-container{
+    text-align: center;
+    padding-top: 20px;
+}

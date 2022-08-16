@@ -34,13 +34,24 @@ function Navbar(user) {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <Link to="/" className="navbar-logo">
-          <img
-            src="/images/transparent-logo.png"
-            alt="logo"
-            onClick={closeMobileMenu}
-          />
-        </Link>
+        {user.user && (
+          <Link to="/" className="navbar-logo">
+            <img
+              src="/images/transparent-logo.png"
+              alt="logo"
+              onClick={closeMobileMenu}
+            />
+          </Link>
+        )}
+        {user.user && (
+          <Link to="/MyChecklist" className="navbar-logo">
+            <img
+              src="/images/transparent-logo.png"
+              alt="logo"
+              onClick={closeMobileMenu}
+            />
+          </Link>
+        )}
         <div className="burger" onClick={handleClick}>
           {/*sets the icon based on whether or not the icon has been clicked*/}
           <FontAwesomeIcon icon={click ? faTimes : faBars}></FontAwesomeIcon>

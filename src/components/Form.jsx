@@ -44,10 +44,14 @@ export default function Form({ formType, setToken }) {
   };
 
   const login = (thisUser) => {
-    setToken(thisUser);
     thisUser.password === user.password
-      ? navigate(`/UserProfile`)
+      ? validated(thisUser)
       : alert("Incorrect Password");
+  };
+
+  const validated = (thisUser) => {
+    setToken(thisUser.id);
+    navigate("/UserProfile");
   };
 
   const register = () => {
@@ -62,7 +66,7 @@ export default function Form({ formType, setToken }) {
           email: response.data.email,
           password: response.data.password,
         });
-        setToken(response.data.email);
+        setToken(response.data.id);
         console.log(response.data);
       })
       .catch((e) => {

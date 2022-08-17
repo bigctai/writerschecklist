@@ -14,7 +14,7 @@ function Profile() {
   };
 
   const retrieveUser = () => {
-    UserService.checkUser(token).then((response) => {
+    UserService.get(token).then((response) => {
       setUserDetails(response.data);
     });
   };

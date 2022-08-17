@@ -5,7 +5,7 @@ import { Title } from "./Title/Title";
 import { Button } from "./Button/Button";
 import { CheckBox } from "./CheckBox/CheckBox";
 import "./UserJournalsList.css";
-import useId from "./useId";
+import useToken from "./useToken";
 import UserService from "../services/UserService";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,11 +15,11 @@ const UserJournalsList = (props) => {
   const [searchJournalName, setSearchJournalName] = useState("");
   const journalsRef = useRef();
   journalsRef.current = journals;
-  const { id } = useId();
-  console.log(id);
+  const { token, setToken } = useToken();
+  console.log(token);
   useEffect(() => {
     retrieveJournals();
-  }, [id]);
+  }, [token]);
 
   const onChangeSearchJournalName = (e) => {
     const searchJournalName = e.target.value;
@@ -30,8 +30,8 @@ const UserJournalsList = (props) => {
     window.location.reload(false);
   };
   const removeAllJournals = () => {
-    console.log(id);
-    ChecklistDataService.removeForUser(id)
+    console.log(token);
+    ChecklistDataService.removeForUser(token)
       .then((response) => {
         refreshList();
       })
@@ -41,8 +41,8 @@ const UserJournalsList = (props) => {
   };
   const deleteJournal = (rowIndex) => {
     const journal_id = journalsRef.current[rowIndex].id;
-    console.log(id);
-    ChecklistDataService.removeSingleJournal(id, journal_id)
+    console.log(token);
+    ChecklistDataService.removeSingleJournal(token, journal_id)
       .then((response) => {
         let newJournals = [...journalsRef.current];
         newJournals.splice(rowIndex, 1);
@@ -54,7 +54,7 @@ const UserJournalsList = (props) => {
   };
   const retrieveJournals = () => {
     console.log("hey");
-    ChecklistDataService.get(id)
+    ChecklistDataService.get(token)
       .then((response) => {
         if (response.data.length) {
           setJournals(response.data);
@@ -79,7 +79,11 @@ const UserJournalsList = (props) => {
       ["submitted"]: submitted,
     };
     console.log(journal);
-    ChecklistDataService.update(journalsRef.current[rowIndex].id, id, journal);
+    ChecklistDataService.update(
+      journalsRef.current[rowIndex].id,
+      token,
+      journal
+    );
   };
   const updateHeardBack = (rowIndex, heardBack) => {
     let journal = {

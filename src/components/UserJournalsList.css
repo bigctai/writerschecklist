@@ -80,3 +80,8 @@ td{
 .exp{
 padding-top: 8px;
 }
+
+.discard :hover{
+    color: orange;
+    cursor: pointer;
+}

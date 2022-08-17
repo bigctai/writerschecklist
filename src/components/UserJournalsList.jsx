@@ -1,56 +1,64 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import ChecklistDataService from "../services/ChecklistService";
 import { useTable } from "react-table";
-import { Link } from "react-router-dom";
 import { Title } from "./Title/Title";
 import { Button } from "./Button/Button";
+import { CheckBox } from "./CheckBox/CheckBox";
 import "./UserJournalsList.css";
-import useToken from "./useToken";
+import useId from "./useId";
 import UserService from "../services/UserService";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const UserJournalsList = (props) => {
   const [journals, setJournals] = useState([]);
   const [searchJournalName, setSearchJournalName] = useState("");
   const journalsRef = useRef();
   journalsRef.current = journals;
-  const { token, setToken } = useToken();
-  const [id, setId] = useState(0);
-  useEffect(() => {
-    retrieveUser();
-  }, []);
+  const { id } = useId();
+  console.log(id);
   useEffect(() => {
     retrieveJournals();
   }, [id]);
 
-  const retrieveUser = () => {
-    UserService.checkUser(token).then((response) => {
-      setId(response.data.id);
-    });
-  };
   const onChangeSearchJournalName = (e) => {
     const searchJournalName = e.target.value;
     setSearchJournalName(searchJournalName);
-  };
-  const retrieveJournals = () => {
-    ChecklistDataService.get(id)
-      .then((response) => {
-        if (response.data.length) {
-          setJournals(response.data);
-        }
-      })
-      .catch((e) => {
-        console.log(e);
-      });
   };
   const refreshList = () => {
     retrieveJournals();
     window.location.reload(false);
   };
   const removeAllJournals = () => {
+    console.log(id);
     ChecklistDataService.removeForUser(id)
       .then((response) => {
-        console.log(response.data);
         refreshList();
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+  const deleteJournal = (rowIndex) => {
+    const journal_id = journalsRef.current[rowIndex].id;
+    console.log(id);
+    ChecklistDataService.removeSingleJournal(id, journal_id)
+      .then((response) => {
+        let newJournals = [...journalsRef.current];
+        newJournals.splice(rowIndex, 1);
+        setJournals(newJournals);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+  const retrieveJournals = () => {
+    console.log("hey");
+    ChecklistDataService.get(id)
+      .then((response) => {
+        if (response.data.length) {
+          setJournals(response.data);
+        }
       })
       .catch((e) => {
         console.log(e);
@@ -65,18 +73,20 @@ const UserJournalsList = (props) => {
         console.log(e);
       });
   };
-  const deleteJournal = (rowIndex) => {
-    const journal_id = journalsRef.current[rowIndex].id;
-    ChecklistDataService.removeSingleJournal(id, journal_id)
-      .then((response) => {
-        props.history.push("/user_journals");
-        let newJournals = [...journalsRef.current];
-        newJournals.splice(rowIndex, 1);
-        setJournals(newJournals);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+  const updateSubmitted = (rowIndex, submitted) => {
+    let journal = {
+      ...journalsRef.current[rowIndex],
+      ["submitted"]: submitted,
+    };
+    console.log(journal);
+    ChecklistDataService.update(journalsRef.current[rowIndex].id, id, journal);
+  };
+  const updateHeardBack = (rowIndex, heardBack) => {
+    let journal = {
+      ...journalsRef.current[rowIndex],
+      [heardBack]: heardBack,
+    };
+    //ChecklistDataService.update(journalsRef.current[rowIndex].id, id, journal);
   };
   const columns = useMemo(
     () => [
@@ -99,14 +109,41 @@ const UserJournalsList = (props) => {
         Header: "Submitted",
         accessor: "submitted",
         Cell: (props) => {
-          return props.value ? "Yes" : "No";
+          return (
+            <CheckBox
+              onClick={() => updateSubmitted(props.row.id, !props.value)}
+              checked={props.value ? true : false}
+            />
+          );
         },
       },
       {
         Header: "Heard Back",
         accessor: "heard_back",
         Cell: (props) => {
-          return props.value ? "Yes" : "No";
+          return (
+            <CheckBox
+              onClick={() => updateHeardBack(props.row.id, props.value)}
+              checked={props.value ? true : false}
+            />
+          );
+        },
+      },
+      {
+        Header: "Delete",
+        accessor: "delete",
+        Cell: (props) => {
+          const rowIdx = props.row.id;
+          return (
+            <div>
+              <span onClick={() => deleteJournal(rowIdx)}>
+                <FontAwesomeIcon
+                  className="discard"
+                  icon={faTrash}
+                ></FontAwesomeIcon>
+              </span>
+            </div>
+          );
         },
       },
     ],

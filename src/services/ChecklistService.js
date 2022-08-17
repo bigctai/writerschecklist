@@ -11,8 +11,8 @@ const get = (id) => {
 const create = (data) => {
   return http.post("/checklist", data);
 };
-const update = (id, data) => {
-  return http.put(`/checklist/${id}`, data);
+const update = (journal_id, user_id, data) => {
+  return http.put(`/checklist/${user_id}/${journal_id}`, data);
 };
 const removeForUser = (id) => {
   return http.delete(`/checklist/${id}`);

@@ -44,7 +44,7 @@ export default function Form({ formType, setToken }) {
   };
 
   const login = (thisUser) => {
-    setToken(thisUser.email);
+    setToken(thisUser);
     thisUser.password === user.password
       ? navigate(`/UserProfile`)
       : alert("Incorrect Password");

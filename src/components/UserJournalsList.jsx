@@ -18,22 +18,25 @@ const UserJournalsList = (props) => {
   useEffect(() => {
     retrieveUser();
   }, []);
+  useEffect(() => {
+    retrieveJournals();
+  }, [id]);
 
   const retrieveUser = () => {
     UserService.checkUser(token).then((response) => {
-      const id = response.data.id;
-      retrieveJournals(id);
+      setId(response.data.id);
     });
   };
   const onChangeSearchJournalName = (e) => {
     const searchJournalName = e.target.value;
     setSearchJournalName(searchJournalName);
   };
-  const retrieveJournals = (id) => {
+  const retrieveJournals = () => {
     ChecklistDataService.get(id)
       .then((response) => {
-        setJournals(response.data);
-        console.log(response.data);
+        if (response.data.length) {
+          setJournals(response.data);
+        }
       })
       .catch((e) => {
         console.log(e);
@@ -41,6 +44,7 @@ const UserJournalsList = (props) => {
   };
   const refreshList = () => {
     retrieveJournals();
+    window.location.reload(false);
   };
   const removeAllJournals = () => {
     ChecklistDataService.removeForUser(id)
@@ -87,6 +91,9 @@ const UserJournalsList = (props) => {
       {
         Header: "Deadline",
         accessor: "deadline",
+        Cell: (props) => {
+          if (props.value) return props.value.substring(0, 10);
+        },
       },
       {
         Header: "Submitted",

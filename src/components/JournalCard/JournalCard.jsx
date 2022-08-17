@@ -18,10 +18,12 @@ export const JournalCard = ({
     retrieveAdded();
   }, []);
   const [added, setAdded] = useState();
+  if (deadline) {
+    deadline = deadline.substring(0, 10);
+  }
 
   const retrieveAdded = () => {
     ChecklistService.filter(userId).then((response) => {
-      console.log(response.data);
       setAdded(
         response.data.findIndex(
           (element) => element.journal_name === journal_name
@@ -41,6 +43,8 @@ export const JournalCard = ({
         journal_id: id,
       };
       ChecklistService.create(user_journal);
+    } else {
+      ChecklistService.removeSingleJournal(userId, id);
     }
   };
   return (

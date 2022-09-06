@@ -8,8 +8,8 @@ const get = (id) => {
 const create = (data) => {
   return http.post("/journals", data);
 };
-const filter = (word_count, range) =>{
-  return http.get(`/journals?word_count=${word_count}&range=${range}`);
+const filter = (word_count, range, status) =>{
+  return http.get(`/journals?word_count=${word_count}&range=${range}&status=${status}`);
 }
 const findByJournalName = (journal_name) => {
   return http.get(`/journal?journal_name=${journal_name}`);

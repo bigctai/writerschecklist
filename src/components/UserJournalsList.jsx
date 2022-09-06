@@ -6,7 +6,6 @@ import { Button } from "./Button/Button";
 import { CheckBox } from "./CheckBox/CheckBox";
 import "./UserJournalsList.css";
 import useToken from "./useToken";
-import UserService from "../services/UserService";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -30,7 +29,6 @@ const UserJournalsList = (props) => {
     window.location.reload(false);
   };
   const removeAllJournals = () => {
-    console.log(token);
     ChecklistDataService.removeForUser(token)
       .then((response) => {
         refreshList();
@@ -41,7 +39,6 @@ const UserJournalsList = (props) => {
   };
   const deleteJournal = (rowIndex) => {
     const journal_id = journalsRef.current[rowIndex].id;
-    console.log(token);
     ChecklistDataService.removeSingleJournal(token, journal_id)
       .then((response) => {
         let newJournals = [...journalsRef.current];
@@ -78,19 +75,25 @@ const UserJournalsList = (props) => {
       ...journalsRef.current[rowIndex],
       ["submitted"]: submitted,
     };
-    console.log(journal);
     ChecklistDataService.update(
       journalsRef.current[rowIndex].id,
       token,
       journal
     );
+    retrieveJournals();
   };
+
+  //JournalsRef returns the journal as it currently is, so it doesn't account for a change in submitted if submitted was changed earlier
   const updateHeardBack = (rowIndex, heardBack) => {
     let journal = {
       ...journalsRef.current[rowIndex],
-      [heardBack]: heardBack,
+      ["heard_back"]: heardBack,
     };
-    //ChecklistDataService.update(journalsRef.current[rowIndex].id, id, journal);
+    ChecklistDataService.update(
+      journalsRef.current[rowIndex].id,
+      token,
+      journal
+    );
   };
   const columns = useMemo(
     () => [
@@ -127,7 +130,7 @@ const UserJournalsList = (props) => {
         Cell: (props) => {
           return (
             <CheckBox
-              onClick={() => updateHeardBack(props.row.id, props.value)}
+              onClick={() => updateHeardBack(props.row.id, !props.value)}
               checked={props.value ? true : false}
             />
           );

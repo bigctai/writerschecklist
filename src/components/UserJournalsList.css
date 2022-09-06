@@ -22,7 +22,7 @@
 }
 
 thead{
-    background-color: grey;
+    background: rgba(242, 179, 85, 0.71);
     border-bottom: 1px solid black;
 }
 

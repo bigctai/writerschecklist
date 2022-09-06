@@ -7,7 +7,7 @@ import ChecklistService from "../services/ChecklistService";
 import UserService from "../services/UserService";
 import useToken from "./useToken";
 
-const Journals = ({ props, words, range }) => {
+const Journals = ({ props, words, range, status }) => {
   const [journals, setJournals] = useState([]);
   const [addedJournals, setAddedJournals] = useState([]);
   const { token, setToken } = useToken();
@@ -19,8 +19,48 @@ const Journals = ({ props, words, range }) => {
   }, [token]);
 
   const retrieveJournals = () => {
-    if (words && range) {
+    if (words && range && status) {
+      JournalDataService.filter(words, range, status)
+        .then((response) => {
+          setJournals(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    } else if (words && range) {
       JournalDataService.filter(words, range)
+        .then((response) => {
+          setJournals(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    } else if (words && status) {
+      JournalDataService.filter(words, status)
+        .then((response) => {
+          setJournals(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    } else if (range && status) {
+      JournalDataService.filter(words, status)
+        .then((response) => {
+          setJournals(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    } else if (range) {
+      JournalDataService.filter(range)
+        .then((response) => {
+          setJournals(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    } else if (status) {
+      JournalDataService.filter(status)
         .then((response) => {
           setJournals(response.data);
         })

@@ -14,7 +14,10 @@ function Search() {
   const handleClick2 = () => setClick2(!click2);
   const [click3, setClick3] = useState(false);
   const handleClick3 = () => setClick3(!click3);
+  const [click4, setClick4] = useState(false);
+  const handleClick4 = () => setClick4(!click4);
   const [genre, setGenre] = useState([]);
+  const [status, setStatus] = useState([0]);
   const handleGenre = (chosenGenre) => {
     if (genre.includes(chosenGenre)) {
       var array = genre;
@@ -43,6 +46,10 @@ function Search() {
     }
     ageRange.sort();
     handleActualAgeRange();
+  };
+
+  const handleOpen = (status) => {
+    setStatus(status);
   };
 
   const [actualAgeRange, setActualAgeRange] = useState("Any");
@@ -156,12 +163,32 @@ function Search() {
                 onClick={(event) => handleAgeRange(5)}
               ></CheckBox>
             </div>
+            <h3 className="filter-option">
+              Open
+              <span onClick={handleClick4}>
+                <FontAwesomeIcon
+                  className="arrow"
+                  icon={click4 ? faAngleDown : faAngleRight}
+                ></FontAwesomeIcon>
+              </span>
+            </h3>
+            <div className={`list ${click4 ? "display" : "none"}`}>
+              <CheckBox
+                label="Yes"
+                onClick={(event) => handleOpen(2)}
+              ></CheckBox>
+              <CheckBox
+                label="No"
+                onClick={(event) => handleOpen(1)}
+              ></CheckBox>
+            </div>
           </div>
+
           <Button
             className="btn-orng"
             buttonStyle="btn--white"
             buttonSize="btn--medium"
-            destination={`/Explore${`/${wordCount}`}${`/${actualAgeRange}`}`}
+            destination={`/Explore${`/${wordCount}`}${`/${actualAgeRange}`}${`/${status}`}`}
           >
             Enter
           </Button>

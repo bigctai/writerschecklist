@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import UserService from "../services/UserService";
 import useToken from "./useToken";
+import "./Profile.css";
 import { Button } from "./Button/Button";
 
 function Profile() {
@@ -19,8 +20,11 @@ function Profile() {
     });
   };
   return (
-    <div>
+    <div className="profile-container">
       <h1>{userDetails.email}</h1>
+      <label>Biography</label>
+      <input className="bio" type="text"></input>
+
       <Button children="Logout" destination="/" onClick={clearStorage}></Button>
     </div>
   );

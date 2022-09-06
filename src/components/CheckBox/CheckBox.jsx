@@ -6,7 +6,7 @@ export const CheckBox = ({ label, onClick, checked }) => {
     <div className="check">
       <input
         type="checkbox"
-        className="chkbx"
+        className={`${checked ? "chkbx checked-chkbx" : "chkbx"}`}
         id="cb"
         onClick={onClick}
         defaultChecked={checked}

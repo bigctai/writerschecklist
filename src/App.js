@@ -27,6 +27,7 @@ function App() {
           <Route exact path = {`/Explore`} element = {<Explore />}>
             <Route exact path = {`:word_count`} element = {<Explore />}/>
             <Route exact path = {`:word_count/:age_range`} element = {<Explore />}/>
+            <Route exact path = {`:word_count/:age_range/:status`} element = {<Explore />}/>
             </Route>
           <Route exact path = "/ExploreSearch" element = {<ExploreSearch />}/>
           </Routes>
@@ -44,6 +45,7 @@ function App() {
           <Route exact path = {`/Explore`} element = {<Explore />}>
             <Route exact path = {`:word_count`} element = {<Explore />}/>
             <Route exact path = {`:word_count/:age_range`} element = {<Explore />}/>
+            <Route exact path = {`:word_count/:age_range/:status`} element = {<Explore />}/>
             </Route>
           <Route exact path = "/ExploreSearch" element = {<ExploreSearch />}/>
           <Route exact path = {`/UserProfile`} element = {<UserProfile />}>

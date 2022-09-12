@@ -1,14 +1,16 @@
 .hero-container {
-    height: 100vh;
+    height: 86vh;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    top: 0;
   }
 
   .background-image{
     width: 100%;
     height:100%;
+    top:0;
     position: absolute;
     z-index: -1;
 }
@@ -16,7 +18,6 @@
 .lesser-container{
     width: 80%;
     height: 80%;
-    margin-top: 100px;
     position: absolute;
     flex-direction: column;
     justify-content: space-between;

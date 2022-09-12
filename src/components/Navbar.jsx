@@ -35,7 +35,7 @@ function Navbar(user) {
     <nav className="navbar">
       <div className="navbar-container">
         {user.user && (
-          <Link to="/" className="navbar-logo">
+          <Link to="/MyChecklist" className="navbar-logo">
             <img
               src="/images/transparent-logo.png"
               alt="logo"
@@ -43,8 +43,8 @@ function Navbar(user) {
             />
           </Link>
         )}
-        {user.user && (
-          <Link to="/MyChecklist" className="navbar-logo">
+        {!user.user && (
+          <Link to="/" className="navbar-logo">
             <img
               src="/images/transparent-logo.png"
               alt="logo"

@@ -1,6 +1,6 @@
 :root {
     /*this is a custon style that means anything with --primary is white*/
-    --primary: rgba(242, 179, 85, 0.71);
+    --primary: rgba(242, 179, 85);
   }
   
   .btn {

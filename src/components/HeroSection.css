@@ -2,22 +2,53 @@
     height: 100vh;
     width: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    object-fit: contain;
   }
 
-p{
+  .background-image{
+    width: 100%;
+    height:100%;
+    position: absolute;
+    z-index: -1;
+}
+
+.lesser-container{
+    width: 80%;
+    height: 80%;
     margin-top: 100px;
+    position: absolute;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    object-fit: contain;
+    background: rgba(102, 98, 92, 0.71);
+}
+
+.title{
+    margin-top: 60px;
+    margin-bottom: -60px;
+}
+
+.first-line{
+    margin-top: 80px;
     text-align: center;
-    font-size: 40px;
+    font-size: 35px;
+    color: white;
+    opacity: 100%;
+}
+
+.important-line{
+    text-align: center;
+    font-size: 35px;
+    color: white;
+    font-style: italic;
+    margin-bottom: -15px;
 }
 .hero-btn{
     margin-top: 50px;
-    margin-left: auto;
-    margin-right: auto;
     display: flex;
+    justify-content: center;
     flex-direction: row;
 }
 

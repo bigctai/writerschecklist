@@ -83,7 +83,7 @@ function Navbar(user) {
               {button && (
                 <Button
                   destination="Signup"
-                  buttonStyle="btn--white"
+                  buttonStyle="btn--grey"
                   buttonSize="btn--fixed"
                 >
                   Sign Up
@@ -96,7 +96,7 @@ function Navbar(user) {
               {button && (
                 <Button
                   destination="Login"
-                  buttonStyle="btn--white"
+                  buttonStyle="btn--grey"
                   buttonSize="btn--fixed"
                 >
                   Login

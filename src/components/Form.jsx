@@ -77,7 +77,7 @@ export default function Form({ formType, setToken }) {
   return (
     <div className="container">
       <img className="logo" src="/images/transparent-logo.png" alt="logo" />
-      <Title titleName={`${checkFormType}`} size="small"></Title>
+      <Title color="white" titleName={`${checkFormType}`} size="small"></Title>
       <div className={`form-container ${checkFormType}`}>
         <div className="email-field">
           <label htmlFor="email">

@@ -13,7 +13,7 @@
 .container{
     display: flex;
     align-items: center;
-    height: 90vh;
+    height: 95vh;
     justify-content: center;
     flex-direction: column;
     width: 60%;
@@ -32,7 +32,7 @@ label{
 }
 
 .email-field{
-    margin-top: 20px;
+    margin-top: -20px;
 }
 
 .field{
@@ -50,8 +50,6 @@ input:hover{
 .logo{
     height: 257px;
     width: 350px;
-    margin-top: -40px;
-    margin-bottom: -50px;
 }
 
 .bottom-container{

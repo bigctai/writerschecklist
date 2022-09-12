@@ -40,6 +40,12 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   }
 
+  .btn--grey{
+    background-color: rgba(102, 98, 92, 0.85);
+    border: 2px solid var(--primary);
+    color: white;
+  }
+
   .btn--small{
     height: 40px;
     width: 100px;
@@ -64,7 +70,8 @@
   
   .btn--primary:hover,
   .btn--red:hover,
-  .btn--blue:hover {
+  .btn--blue:hover,
+  .btn--grey:hover {
     transition: all 0.3s ease-out;
     background: #fff;
     opacity:2;

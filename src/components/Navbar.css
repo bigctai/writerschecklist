@@ -1,5 +1,5 @@
 .navbar {
-    background: rgba(102, 98, 92, 0.8);;
+    background: rgba(102, 98, 92, 0.85);
     height: 100px;
     width: 100%;
     display: flex;
@@ -95,12 +95,6 @@
   
   .burger {
     display: none;
-  }
-
-  .navbar-btns{
-    display: flex;
-    flex-direction: row;
-    margin-right: 50px;
   }
   .user-profile{
     height:40px;

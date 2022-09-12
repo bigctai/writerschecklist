@@ -11,7 +11,7 @@ function HeroSection() {
         src="images/writerschecklistbackground.jpeg"
       ></img>
       <div className="lesser-container">
-        <div className="title">
+        <div className="titles">
           <Title color="white" titleName="Welcome to" />
           <Title color="orange" titleName="Writer's Checklist" />
         </div>

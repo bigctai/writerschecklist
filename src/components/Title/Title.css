@@ -12,6 +12,10 @@
     color: white;
 }
 
+.grey{
+    color: rgba(102, 98, 92, 0.71);
+}
+
 .small{
     font-size: 80px;
 }

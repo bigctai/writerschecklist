@@ -123,12 +123,14 @@ export default function Form({ formType, setToken }) {
           {checkFormType === "Signup" ? (
             <Button
               className="enter-btn"
+              buttonStyle="btn--white"
               onClick={(event) => checkInput(event)}
               children="Sign Up"
             />
           ) : (
             <Button
               className="enter-btn"
+              buttonStyle="btn--white"
               onClick={(event) => checkInput(event)}
               children="Login"
             ></Button>

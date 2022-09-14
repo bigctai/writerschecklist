@@ -63,141 +63,144 @@ function Search() {
   };
   return (
     <div className="search-container">
-      <Title
-        color="orange"
-        size="small"
-        titleName="Explore Literary Journals"
-      ></Title>
-      <h2 className="filters">
-        <Link to="/Explore">Browse All</Link> or Search With Filters
-      </h2>
-      {/*make a search bar component*/}
-      <div className="searching">
-        <input className="bar" type="search" placeholder="Search"></input>
-        <div className="filter-container">
-          <div className="filter-list">
-            <h3 className="filters">Filters:</h3>
-            <div className="one-filter">
-              <h3 className="filter-option">
-                Genre
-                <span onClick={handleClick1}>
-                  <FontAwesomeIcon
-                    className="arrow"
-                    icon={click1 ? faAngleDown : faAngleRight}
-                  ></FontAwesomeIcon>
-                </span>
-              </h3>
-              <div className={`list ${click1 ? "display" : "none"}`}>
-                <CheckBox
-                  label="Any"
-                  onClick={(event) => handleGenre(1)}
-                ></CheckBox>
-                <CheckBox
-                  label="Fantasy"
-                  onClick={(event) => handleGenre(2)}
-                ></CheckBox>
-                <CheckBox
-                  label="Realistic"
-                  onClick={(event) => handleGenre(3)}
-                ></CheckBox>
+      <div className="colored-container">
+        <Title
+          color="orange"
+          size="small"
+          titleName="Explore Literary Journals"
+        ></Title>
+        <h2 className="filters">
+          <Link to="/Explore">Browse All</Link> or Search With Filters
+        </h2>
+        {/*make a search bar component*/}
+        <div className="searching">
+          <input className="bar" type="search" placeholder="Search"></input>
+          <div className="filter-container">
+            <div className="filter-list">
+              <h3 className="filters">Filters:</h3>
+              <div className="one-filter">
+                <h3 className="filter-option">
+                  Genre
+                  <span onClick={handleClick1}>
+                    <FontAwesomeIcon
+                      className="arrow"
+                      icon={click1 ? faAngleDown : faAngleRight}
+                    ></FontAwesomeIcon>
+                  </span>
+                </h3>
+                <div className={`list ${click1 ? "display" : "none"}`}>
+                  <CheckBox
+                    label="Any"
+                    onClick={(event) => handleGenre(1)}
+                  ></CheckBox>
+                  <CheckBox
+                    label="Fantasy"
+                    onClick={(event) => handleGenre(2)}
+                  ></CheckBox>
+                  <CheckBox
+                    label="Realistic"
+                    onClick={(event) => handleGenre(3)}
+                  ></CheckBox>
+                </div>
+              </div>
+              <div className="one-filter">
+                <h3 className="filter-option">
+                  Word Count
+                  <span onClick={handleClick2}>
+                    <FontAwesomeIcon
+                      className="arrow"
+                      icon={click2 ? faAngleDown : faAngleRight}
+                    ></FontAwesomeIcon>
+                  </span>
+                </h3>
+                <div className={`list ${click2 ? "display" : "none"}`}>
+                  <CheckBox
+                    label="1000"
+                    onClick={(event) => handleWordCount(1000)}
+                  ></CheckBox>
+                  <CheckBox
+                    label="2500"
+                    onClick={(event) => handleWordCount(2500)}
+                  ></CheckBox>
+                  <CheckBox
+                    label="4000"
+                    onClick={(event) => handleWordCount(4000)}
+                  ></CheckBox>
+                  <CheckBox
+                    label="6000"
+                    onClick={(event) => handleWordCount(6000)}
+                  ></CheckBox>
+                  <CheckBox
+                    label="6000+"
+                    onClick={(event) => handleWordCount(1000000)}
+                  ></CheckBox>
+                </div>
+              </div>
+              <div className="one-filter">
+                <h3 className="filter-option">
+                  Age Range
+                  <span onClick={handleClick3}>
+                    <FontAwesomeIcon
+                      className="arrow"
+                      icon={click3 ? faAngleDown : faAngleRight}
+                    ></FontAwesomeIcon>
+                  </span>
+                </h3>
+                <div className={`list ${click3 ? "display" : "none"}`}>
+                  <CheckBox
+                    label="Middle School"
+                    onClick={(event) => handleAgeRange(1)}
+                  ></CheckBox>
+                  <CheckBox
+                    label="High School"
+                    onClick={(event) => handleAgeRange(2)}
+                  ></CheckBox>
+                  <CheckBox
+                    label="Teen"
+                    onClick={(event) => handleAgeRange(4)}
+                  ></CheckBox>
+                  <CheckBox
+                    label="Undergraduate"
+                    onClick={(event) => handleAgeRange(3)}
+                  ></CheckBox>
+                  <CheckBox
+                    label="All Ages"
+                    onClick={(event) => handleAgeRange(5)}
+                  ></CheckBox>
+                </div>
+              </div>
+              <div className="one-filter">
+                <h3 className="filter-option">
+                  Open
+                  <span onClick={handleClick4}>
+                    <FontAwesomeIcon
+                      className="arrow"
+                      icon={click4 ? faAngleDown : faAngleRight}
+                    ></FontAwesomeIcon>
+                  </span>
+                </h3>
+                <div className={`list ${click4 ? "display" : "none"}`}>
+                  <CheckBox
+                    label="Yes"
+                    onClick={(event) => handleOpen(2)}
+                  ></CheckBox>
+                  <CheckBox
+                    label="No"
+                    onClick={(event) => handleOpen(1)}
+                  ></CheckBox>
+                </div>
               </div>
             </div>
-            <div className="one-filter">
-              <h3 className="filter-option">
-                Word Count
-                <span onClick={handleClick2}>
-                  <FontAwesomeIcon
-                    className="arrow"
-                    icon={click2 ? faAngleDown : faAngleRight}
-                  ></FontAwesomeIcon>
-                </span>
-              </h3>
-              <div className={`list ${click2 ? "display" : "none"}`}>
-                <CheckBox
-                  label="1000"
-                  onClick={(event) => handleWordCount(1000)}
-                ></CheckBox>
-                <CheckBox
-                  label="2500"
-                  onClick={(event) => handleWordCount(2500)}
-                ></CheckBox>
-                <CheckBox
-                  label="4000"
-                  onClick={(event) => handleWordCount(4000)}
-                ></CheckBox>
-                <CheckBox
-                  label="6000"
-                  onClick={(event) => handleWordCount(6000)}
-                ></CheckBox>
-                <CheckBox
-                  label="6000+"
-                  onClick={(event) => handleWordCount(1000000)}
-                ></CheckBox>
-              </div>
+            <div className="enter-btn">
+              <Button
+                buttonStyle="btn--white"
+                buttonSize="btn--medium"
+                //NEED TO ADD SEARCH OPTIONS
+                destination={`/Explore${`/${wordCount}`}${`/${actualAgeRange}`}${`/${status}`}`}
+              >
+                Enter
+              </Button>
             </div>
-            <div className="one-filter">
-              <h3 className="filter-option">
-                Age Range
-                <span onClick={handleClick3}>
-                  <FontAwesomeIcon
-                    className="arrow"
-                    icon={click3 ? faAngleDown : faAngleRight}
-                  ></FontAwesomeIcon>
-                </span>
-              </h3>
-              <div className={`list ${click3 ? "display" : "none"}`}>
-                <CheckBox
-                  label="Middle School"
-                  onClick={(event) => handleAgeRange(1)}
-                ></CheckBox>
-                <CheckBox
-                  label="High School"
-                  onClick={(event) => handleAgeRange(2)}
-                ></CheckBox>
-                <CheckBox
-                  label="Teen"
-                  onClick={(event) => handleAgeRange(4)}
-                ></CheckBox>
-                <CheckBox
-                  label="Undergraduate"
-                  onClick={(event) => handleAgeRange(3)}
-                ></CheckBox>
-                <CheckBox
-                  label="All Ages"
-                  onClick={(event) => handleAgeRange(5)}
-                ></CheckBox>
-              </div>
-            </div>
-            <div className="one-filter">
-              <h3 className="filter-option">
-                Open
-                <span onClick={handleClick4}>
-                  <FontAwesomeIcon
-                    className="arrow"
-                    icon={click4 ? faAngleDown : faAngleRight}
-                  ></FontAwesomeIcon>
-                </span>
-              </h3>
-              <div className={`list ${click4 ? "display" : "none"}`}>
-                <CheckBox
-                  label="Yes"
-                  onClick={(event) => handleOpen(2)}
-                ></CheckBox>
-                <CheckBox
-                  label="No"
-                  onClick={(event) => handleOpen(1)}
-                ></CheckBox>
-              </div>
-            </div>
-          </div>
-          <div className="enter-btn">
-            <Button
-              buttonStyle="btn--white"
-              buttonSize="btn--medium"
-              destination={`/Explore${`/${wordCount}`}${`/${actualAgeRange}`}${`/${status}`}`}
-            >
-              Enter
-            </Button>
           </div>
         </div>
       </div>

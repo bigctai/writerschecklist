@@ -13,8 +13,7 @@
 .container{
     display: flex;
     align-items: center;
-    height: 95vh;
-    justify-content: center;
+    height: 88vh;
     flex-direction: column;
     width: 60%;
     position: sticky;
@@ -48,8 +47,8 @@ input:hover{
 }
 
 .logo{
-    height: 257px;
-    width: 350px;
+    height: 150px;
+    width: 204px;
 }
 
 .bottom-container{

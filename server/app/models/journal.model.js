@@ -34,7 +34,7 @@ Journal.findById = (id, result) => {
     result({ kind: "not_found" }, null);
   });
 };
-Journal.getAll = (word_count, range, status, result) => {
+Journal.getAll = (word_count, range, status, name, result) => {
   let query = "SELECT id, journal_name, a.range, genre, word_count, deadline \
   FROM journals j\
   JOIN age a ON j.age_range = a.range_id";
@@ -55,6 +55,9 @@ Journal.getAll = (word_count, range, status, result) => {
     if (status>0) {
       query+= ` AND open = ${parseInt(status)}`
     }
+    if(name!=null){
+      query+= ` AND journal_name LIKE ${name}`
+    }
   }
   else if (range>0) {
     query+= ` WHERE (age_range = ${stringRange.charAt(0)}`
@@ -66,9 +69,18 @@ Journal.getAll = (word_count, range, status, result) => {
     if (status>0) {
       query+= ` AND open = ${parseInt(status)}`
     }
+    if(name!=null){
+      query+= ` AND journal_name LIKE ${name}`
+    }
   }
   else if(status>0){
     query+=` WHERE open = ${parseInt(status)}`
+    if(name!=null){
+      query+= ` AND journal_name LIKE ${name}`
+    }
+  }
+  else if(name!=null){
+    query+= ` WHERE journal_name LIKE ${name}`
   }
   sql.query(query, (err, res) => {
     if (err) {

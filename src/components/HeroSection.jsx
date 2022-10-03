@@ -12,8 +12,8 @@ function HeroSection() {
       ></img>
       <div className="lesser-container">
         <div className="titles">
-          <Title color="white" titleName="Welcome to" />
-          <Title color="orange" titleName="Writer's Checklist" />
+          <Title size="large" color="white" titleName="Welcome to" />
+          <Title size="large" color="orange" titleName="Writer's Checklist" />
         </div>
         <p className="first-line">Keep Track of All of Your Submissions</p>
         <p className="important-line">So You Never Miss Another Deadline</p>

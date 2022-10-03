@@ -29,8 +29,9 @@ exports.findAll = (req, res) => {
     const word_count = req.query.word_count;
     const range = req.query.range;
     const status = req.query.status;
+    const name = req.query.name;
     console.log(status)
-    Journal.getAll(word_count, range, status, (err, data) => {
+    Journal.getAll(word_count, name, range, status, (err, data) => {
       if (err)
         res.status(500).send({
           message:

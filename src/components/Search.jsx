@@ -48,6 +48,8 @@ function Search() {
     handleActualAgeRange();
   };
 
+  const [name, setName] = useState(null);
+
   const handleOpen = (status) => {
     setStatus(status);
   };
@@ -196,7 +198,7 @@ function Search() {
                 buttonStyle="btn--white"
                 buttonSize="btn--medium"
                 //NEED TO ADD SEARCH OPTIONS
-                destination={`/Explore${`/${wordCount}`}${`/${actualAgeRange}`}${`/${status}`}`}
+                destination={`/Explore${`/${name}`}${`/${wordCount}`}${`/${actualAgeRange}`}${`/${status}`}`}
               >
                 Enter
               </Button>
